@@ -8,7 +8,6 @@ import { useMediaQuery } from "react-responsive";
 const Hero = () => {
 
     const videoRef = useRef();
-    const videoTimelineRef = useRef();
     const isMobile = useMediaQuery({ maxWidth: 767 });
 
     useGSAP(() => {
@@ -111,7 +110,7 @@ const Hero = () => {
         <div className="video absolute inset-0">
             <video 
             ref={videoRef}
-            src="/videos/output.mp4"
+            src="/public/videos/output.mp4"
             muted
             playsInline
             preload="auto"
