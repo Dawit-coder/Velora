@@ -1,12 +1,12 @@
 import { useGSAP } from '@gsap/react'
-import { openingHours, socials } from '../../constants/index'
+import { openingHours } from '../../constants/index'
 import { SplitText } from 'gsap/all'
 import gsap from 'gsap'
+import { Instagram, Linkedin } from 'lucide-react'
 
 const Contact = () => {
-
-    useGSAP(()=>{
-        const titleSplit = SplitText.create('#contact h2', { type: 'word'})
+    useGSAP(() => {
+        const titleSplit = SplitText.create('#contact h2', { type: 'word' })
         const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: '#contact',
@@ -29,43 +29,84 @@ const Contact = () => {
         }, '<')
     })
 
-  return (
-    <footer id="contact">
-      <img src="/images/footer-right-leaf.png" alt="leaf-right" id="f-right-leaf" />
-      <img src="/images/footer-left-leaf.png" alt="leaf-left" id="f-left-leaf" />
-      <div className="content">
-        <h2>Where to Find Us</h2>
-        <div>
-            <h3>Visit Our Bar</h3>
-            <p>456, Raq Blvd, #404, Los Angeles, CA 90210</p>
-        </div>
+    return (
+        <footer id="contact" className="relative">
+            {/* Decorative leaves */}
+            <img 
+                src="/images/footer-right-leaf.png" 
+                alt="leaf decoration" 
+                id="f-right-leaf" 
+                className="absolute right-0 top-1/2"
+            />
+            <img 
+                src="/images/footer-left-leaf.png" 
+                alt="leaf decoration" 
+                id="f-left-leaf" 
+                className="absolute left-0 top-1/2"
+            />
 
-        <div>
-            <h3>Contact Us</h3>
-            <p>(555) 987-6543</p>
-            <p>velora@gmail.com</p>
-        </div>
+            <div className="content max-w-6xl mx-auto px-4 py-12 relative z-10">
+                <h2 className="text-3xl font-bold mb-8">Where to Find Us</h2>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {/* Address */}
+                    <div>
+                        <h3 className="text-xl font-semibold mb-2">📍 Visit Our Bar</h3>
+                        <p className="text-gray-300 text-base">456, Raq Blvd, #404<br/>Los Angeles, CA 90210</p>
+                    </div>
 
-        <div>
-            <h3>Open Every Day</h3>
-            {openingHours.map((time) => (
-                <p key={time.day}>
-                    {time.day} : {time.time}
-                </p>
-            ))}
-        </div>
-        <div>
-            <h3>Social</h3>
-            <div className="flex-center gap-5">
-                {socials.map((social) => (
-                    <a href={social.url} key={social.name} aria-label={social.name}></a>
-                ))}
+                    {/* Contact */}
+                    <div>
+                        <h3 className="text-xl font-semibold mb-2">Contact Us</h3>
+                        <p className="text-gray-200 text-base">📞(555) 987-6543</p>
+                        <p className="text-gray-300 text-base">velora@gmail.com</p>
+                    </div>
+
+                    {/* Hours */}
+                    <div>
+                        <h3 className="text-xl font-semibold mb-2">Open Every Day</h3>
+                        {openingHours.map((time) => (
+                            <p key={time.day} className="text-gray-300 text-base">
+                                {time.day} : {time.time}
+                            </p>
+                        ))}
+                    </div>
+
+                    {/* Social */}
+                    <div className='flex flex-col'>
+                        <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
+                        <div className="flex gap-4 justify-center">
+                            <a 
+                                href="https://www.instagram.com/novawhisperer/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                                className="transition-transform hover:scale-110"
+                            >
+                                <Instagram className="text-[#E1306C] w-6 h-6" />
+                            </a>
+                            <a 
+                                href="https://www.linkedin.com/in/dawitteshome/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn"
+                                className="transition-transform hover:scale-110"
+                            >
+                                <Linkedin className="text-[#0A66C2] w-6 h-6" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-12 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                    <p>© {new Date().getFullYear()} Velora • Built by <span 
+                        className="underline hover:text-white transition-colors">
+                        Dawit
+                    </span></p>
+                </div>
             </div>
-        </div>
-
-      </div>
-    </footer>
-  )
+        </footer>
+    )
 }
 
 export default Contact
